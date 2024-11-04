@@ -26,6 +26,17 @@ jobs:
         working-directory: ./lede
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          path: build
+
+      - name: Checkout OpenWrt
+        uses: actions/checkout@v4
+        with:
+          repository: coolsnowwolf/lede
+          path: lede
+
       - name: Space cleanup and Initialization environment
         env:
           DEBIAN_FRONTEND: noninteractive
@@ -41,17 +52,6 @@ jobs:
           sudo -E apt -y autoremove --purge
           sudo -E apt clean
           sudo -E timedatectl set-timezone "Asia/Shanghai"
-
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          path: build
-
-      - name: Checkout OpenWrt
-        uses: actions/checkout@v4
-        with:
-          repository: coolsnowwolf/lede
-          path: lede
 
       - name: Update feeds
         run: |
