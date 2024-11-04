@@ -22,7 +22,8 @@ jobs:
     runs-on: ubuntu-latest
     
     defaults:
-      run: working-directory: ./lede
+      run:
+        working-directory: ./lede
 
     steps:
       - name: Space cleanup and Initialization environment
